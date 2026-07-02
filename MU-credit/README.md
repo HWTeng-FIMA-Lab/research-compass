@@ -1,4 +1,4 @@
-# Overivew
+# Overivew on maximimizing utility for credit models
 
 Let $x$ be a vector of feauters. $y$ is the outcome, means default or not default. 
 
