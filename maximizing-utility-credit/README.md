@@ -1,30 +1,4 @@
-# 
-
-Participants: Tiffany, Claire
-
-## Issues discussed today
-
-1. Tiffany has a pipeline to do the work, and propose two datasets (p2plending, German credit), and would like to have $c(x_i)$.
-   - 🤩 Why c(x_i) important? really important? 
-
-3. Claire, finds a paper that models LGD (loss given default) as a distribution.
-   - Start with GSC. (Logistic Regression, h = 0.5) Model0 
-   - Benchmark: constant LGD. M1
-   - 🤩 Contribution: LGD as a distribution -> Update introduction to convince us that this is important. M2
-
-
-## To-do 
-
-### 1. Literature 
-
-1. Check my claude chat and update your introduction and references: https://claude.ai/share/6db2d281-7459-41dd-817a-a870ffde47dd
-### 2. Chrissy
-
-Chrissy did a good job (a simpler version). (See Chrissy's current version in papers2read.)   
-
-### 3. Why utility cutoff? 🤪
-
-#### Background
+# Overivew
 
 Let $x$ be a vector of feauters. $y$ is the outcome, means default or not default. 
 
@@ -33,7 +7,7 @@ Let $x$ be a vector of feauters. $y$ is the outcome, means default or not defaul
 | 1 | No default 
 | - 1| Default|
 
-We can use Machine learning to estimate default probability, $f(x)$. We select a threshold, $h$. 
+We can use Machine learning to estimate default probability, $f(x)$. To decide whether an individual defaults, we select a threshold, $h$. 
 If $f(x)>h$, we reject the loan, and if $\hat{p}(x)<h$, we approve the loan. If no other specified, we usually set $h=0.5$. 
 However, doins so is threshold dependent. Differnt $h$ produces different confusion matrix and thus the subsequent measures, accuarcy, F1-Score, etc. Another threshold independent measure is AUC. 
 
