@@ -15,7 +15,7 @@ Now, we already have a $f(x)$.
 
 Suppose we are working with Logistic Regression, $f(x)=\sigma(\beta, x) = P(y= - 1 | x) =  \frac{1}{1+exp(-\beta' x)}$. <br> 
 
-$\hat{f} = \arg \max_{\beta} −N1​i=1\sum N​[y_i​ log( \sigma(\beta,x_i) ​)+(1−y_i​)log(1−\sigma(\beta, x_i)​)].$
+$\hat{f} = \arg \max_{\beta} \sum_{i=1}^N ​[y_i​ log( \sigma(\beta,x_i) ​)+(1−y_i​)log(1−\sigma(\beta, x_i)​)].$
 
 #### $u_{a,y}(x)$
 
