@@ -17,7 +17,6 @@ Suppose we are working with Logistic Regression, $f(x)=\sigma(\beta, x) = P(y= -
 
 $\hat{f} = \arg \max_{\beta} −N1​i=1\sum N​[y_i​ log( \sigma(\beta,x_i) ​)+(1−y_i​)log(1−\sigma(\beta, x_i)​)].$
 
-
 #### $u_{a,y}(x)$
 
 |$a$| action|
