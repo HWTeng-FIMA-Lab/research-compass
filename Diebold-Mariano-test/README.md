@@ -40,7 +40,7 @@ where $\hat{f}_d(0)$ is a **consistent estimate of the spectral density $f_d(0)$
 
 The denominator of $S_1$ requires an estimate of the long-run variance $2\pi f_d(0)$. Because $d_t$ is serially correlated, this estimate must incorporate the autocovariances of $d_t$ at each lag, not merely the lag-0 variance. In this implementation the estimate is obtained by regressing $d_t$ on a constant by OLS — so the estimated intercept equals $\bar{d}$ — and taking its HAC standard error, which equals $\sqrt{\hat{V}(\bar{d})}$; the ratio of the two is $S_1$.
 
-- **Estimator:** a Newey–West HAC estimator with a Bartlett kernel (Newey & West, 1987), which guarantees a non-negative long-run variance estimate.
+- **Estimator:** a Newey–West HAC estimator with a Bartlett kernel, which guarantees a non-negative long-run variance estimate.
 - **Truncation lag $= h - 1$:** because the loss differential of an optimal $h$-step-ahead forecast is at most $(h-1)$-dependent (Diebold & Mariano, 1995). When $h = 1$ the truncation lag is $0$, only the lag-$0$ variance enters, and the estimator reduces to the ordinary sample variance.
 
 ---
