@@ -1,11 +1,12 @@
-# 1. Introduction of Diebold-Mariano test
+# Diebold-Mariano test
 *Edited by Elvis*
 
+# 1. Introduction
 This document explains the theoretical basis and implementation of the Diebold–Mariano (1995) test used to compare the predictive accuracy of two competing forecasts. Comparing point estimates of a loss measure (MSE, MAE, and so on) alone is not enough to determine which model is superior; the DM test assesses whether the observed difference in predictive performance is **statistically significant**. Depending on the hypothesis, the test can evaluate either whether the two models simply **differ** in accuracy (two-sided) or whether one model is **significantly better** than the other (one-sided).
 
 ---
 
-## 1. Test Statistic and Asymptotic Distribution
+### Test Statistic and Asymptotic Distribution
 
 **Step 1 — Forecast errors.**
 Let $y_t$ be the realized target and $\hat{f}_{1t}$, $\hat{f}_{2t}$ the forecasts from the two models:
@@ -30,7 +31,7 @@ where $\hat{f}_d(0)$ is a **consistent estimate of the spectral density $f_d(0)$
 
 ---
 
-## 2. Estimating the Long-Run Variance
+### Estimating the Long-Run Variance
 
 The denominator of $S_1$ requires an estimate of the long-run variance $2\pi f_d(0)$. Because $d_t$ is serially correlated, this estimate must incorporate the autocovariances of $d_t$ at each lag, not merely the lag-0 variance. In this implementation the estimate is obtained by regressing $d_t$ on a constant by OLS — so the estimated intercept equals $\bar{d}$ — and taking its HAC standard error, which equals $\sqrt{\hat{V}(\bar{d})}$; the ratio of the two is $S_1$.
 
@@ -39,7 +40,7 @@ The denominator of $S_1$ requires an estimate of the long-run variance $2\pi f_d
 
 ---
 
-## 3. One-Sided vs. Two-Sided Tests
+### One-Sided vs. Two-Sided Tests
 
 Since $S_1 \sim N(0,1)$, either a two-sided or a one-sided test may be used, exactly as with a standard Z-test.
 
@@ -53,9 +54,15 @@ Since $S_1 \sim N(0,1)$, either a two-sided or a one-sided test may be used, exa
 
 ---
 
-## 4. Loss Function
+### Loss Function
 
 The DM test allows the per-period loss to be an **arbitrary function $g(\cdot)$** of the forecast error. Once the loss differential $d_t = g(e_{1t}) - g(e_{2t})$ has been formed, the only requirement is that $d_t$ be covariance stationary and short memory; standard Central Limit Theorem results then deliver the $N(0,1)$ asymptotic distribution, whatever the choice of $g$.
 
 Intuitively, as long as the underlying forecast errors are stationary, any well-behaved transformation of them — squaring for MSE, absolute value for MAE, or an asymmetric loss — still produces a stationary loss-differential series $d_t$. Consequently the same statistic and the same asymptotic normal distribution apply regardless of the loss function; only the realized values of $d_t$ (and hence the resulting p-value) change.
 
+---
+
+# 2. List of functions
+|Index|Outputs| Function(Inputs)| Descriptions|
+|---|---|---|---|
+|1| dm_stat, p_value, float(d.mean()) | diebold_mariano(y_true, f_model, f_benchmark, loss="mse", h=1, two_sided=False)|Diebold–Mariano test of a model versus a benchmark forecast|
