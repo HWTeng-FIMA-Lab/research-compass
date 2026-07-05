@@ -1,11 +1,5 @@
-# Diebold Mariano test
-
+# 1. Introduction of Diebold-Mariano test
 *Edited by Elvis*
-
-
-## Introduction of Diebold-Mariano test
-
-# Diebold–Mariano (DM) Test for Predictive Accuracy
 
 This document explains the theoretical basis and implementation of the Diebold–Mariano (1995) test used to compare the predictive accuracy of two competing forecasts. Comparing point estimates of a loss measure (MSE, MAE, and so on) alone is not enough to determine which model is superior; the DM test assesses whether the observed difference in predictive performance is **statistically significant**. Depending on the hypothesis, the test can evaluate either whether the two models simply **differ** in accuracy (two-sided) or whether one model is **significantly better** than the other (one-sided).
 
