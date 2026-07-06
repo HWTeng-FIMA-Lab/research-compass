@@ -68,21 +68,73 @@ $$
 
 ---
 #### ❓❓❓ The above utiltiy? 
-**Why the Factor of 2 Appears in $Y + 1 - 2c(X)$**
+##### Derivation of the Weight Term b(X)[Y + 1 − 2c(X)]
 
-Define the two correct-decision payoff differentials as $G_1 = u_{1,1}(x) - u_{-1,1}(x)$ and $G_2 = u_{-1,-1}(x) - u_{1,-1}(x)$, both strictly positive by Condition 1. Since $a \in \{1,-1\}$, the utility function can be written uniquely as $U(a,y,x) = A(y,x) + B(y,x)\,a$, where $B(y,x) = [U(1,y,x)-U(-1,y,x)]/2$. Evaluating at $y=1$ and $y=-1$ gives $B(1,x)=G_1/2$ and $B(-1,x)=-G_2/2$. Expressing $B(y,x)$ as a linear function of $y$, say $B(y,x)=p+qy$, and solving the resulting system yields $p=(G_1-G_2)/4$ and $q=(G_1+G_2)/4$, so that
+***Setup.*** Define the two correct-decision payoff differentials:
 
-$$B(y,x) = \frac{G_1+G_2}{4}\left[y + \frac{G_1-G_2}{G_1+G_2}\right].$$
+$$G_1 = u_{1,1}(x) - u_{-1,1}(x), \qquad G_2 = u_{-1,-1}(x) - u_{1,-1}(x)$$
 
-The key step is substituting the definition of the cutoff $c(x) = G_2/(G_1+G_2)$. Splitting the numerator of the remaining fraction gives
+Both are strictly positive by Condition 1.
 
-$$\frac{G_1-G_2}{G_1+G_2} = \frac{(G_1+G_2)-2G_2}{G_1+G_2} = 1 - 2c(x),$$
+---
 
-which is a pure algebraic identity: a difference-over-sum expression is always equal to one minus twice the corresponding ratio. Substituting back and noting that $b(x)\equiv G_1+G_2$ yields
+##### Step 1: Linearize U in a
 
-$$B(y,x) = \frac{b(x)}{4}\big[y + 1 - 2c(x)\big],$$
+Since a ∈ {1, −1}, any function of a can be written uniquely as:
 
-consistent with footnote 2 of Elliott and Lieli (2013). The factor of 2 therefore arises from a unit-scale mismatch: $c(x)$ lives on $[0,1]$, whereas $y$ takes values in $\{-1,1\}$ with a range of 2. Multiplying $c(x)$ by 2 rescales the cutoff onto the same $\{-1,1\}$ metric as the outcome variable, so that $y+1-2c(x)$ measures the signed deviation of $y$ from the decision threshold in a dimensionally consistent way. As a special case, when $G_1=G_2$ the cutoff is $c(x)=0.5$ and the expression reduces to simply $y$, recovering the symmetric benchmark in which both types of correct prediction are equally valuable.
+$$U(a,y,x) = A(y,x) + B(y,x)\cdot a$$
 
-where $b(x)$ is the denominator of $c(x)$ above. This is equivalent to a **cost-sensitive perceptron problem** where misclassification costs depend on $(Y_i, X_i)$. Monte Carlo evidence shows MU beats maximum likelihood when the conditional probability is misspecified — exactly the realistic case in credit scoring.
+where 
+
+$$A(y,x)=\frac{U(1,y,x) + U(-1,y,x)}{2}, B(y,x) = \frac{U(1,y,x) - U(-1,y,x)}{2}$$
+
+So that when $a=1 : A(1,x)+B(1,x)=U(1,y,x)$ ; $a=-1 : A(-1,x)+B(-1,x)=U(-1,y,x)$
+
+Evaluating $B(y,x)$ at each outcome:
+
+$$B(1,x) = \frac{G_1}{2}, \qquad B(-1,x) = -\frac{G_2}{2}$$
+
+---
+
+##### Step 2: Linearize B in y
+
+Since y ∈ {1, −1}, write B(y,x) = p + qy and solve:
+
+$$p + q = \frac{G_1}{2}, \qquad p - q = -\frac{G_2}{2}$$
+
+$$\Rightarrow \quad p = \frac{G_1 - G_2}{4}, \qquad q = \frac{G_1 + G_2}{4}$$
+
+Factoring out (G₁ + G₂)/4:
+
+$$B(y,x) = \frac{G_1+G_2}{4}\left[y + \frac{G_1-G_2}{G_1+G_2}\right]$$
+
+---
+
+##### Step 3: Substitute the definition of c(x)
+
+From equation (2) of Elliott and Lieli (2013):
+
+$$c(x) = \frac{G_2}{G_1+G_2}$$
+
+The remaining fraction simplifies by a pure algebraic identity:
+
+$$\frac{G_1-G_2}{G_1+G_2} = \frac{(G_1+G_2)-2G_2}{G_1+G_2} = 1 - 2c(x)$$
+
+Substituting and noting b(x) ≡ G₁ + G₂:
+
+$$B(y,x) = \frac{b(x)}{4}\big[y + 1 - 2c(x)\big]$$
+
+---
+
+##### Result
+
+Since $U(a,y,x) = A(y,x) + B(y,x)·a$ and A does not depend on a,
+maximizing expected utility over $a(·) = sign[g(X)]$ reduces to:
+
+$$\max_{g \in G}\ E_{Y,X}\left\{ b(X)[Y+1-2c(X)]\mathrm{sign}[g(X)]\right\} $$
+
+which is equation (4) of Elliott and Lieli (2013). The factor of 2
+arises solely from a scale mismatch: c(x) ∈ (0,1) while y ∈ {−1,1}
+has range 2, so multiplying c(x) by 2 aligns the cutoff with the
+metric of the outcome variable.
 
