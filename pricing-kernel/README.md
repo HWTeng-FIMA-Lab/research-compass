@@ -12,8 +12,9 @@ Jimmy: SP500 index
 
 ## Estimate Q, we need the following three functions to do a simulation study 
 
+### Focus on vanilla options
 
-1. gen_SVCJ(???)
+1. gen_SVCJ(???) (2)
 
 to generate synthetic dataset for a bunch of option prices of size $n$
 
@@ -25,10 +26,10 @@ to generate synthetic dataset for a bunch of option prices of size $n$
 | $V_0$ |0.0009  |? | ?| ?|   
 
 
-2a. calc_SVCJ_option_Duffie(omega, K, T)
-2b. calc_SVCJ_option_MC(omega, K, T) 
+2a. calc_SVCJ_option_Duffie(omega, K, T) (6)
+2b. calc_SVCJ_option_MC(omega, K, T) (2)
 
-3. est_SVCJ(???) to minimize the squared loss among market and model prices...
+3. est_SVCJ(???) (6) to minimize the squared loss among market and model prices...
 
 
 Our empirical methodology proceeds as follows. For each trading day, we estimate
