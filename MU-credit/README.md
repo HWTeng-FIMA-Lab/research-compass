@@ -7,7 +7,7 @@ Let $x$ be a vector of feauters. $y$ is the outcome, means default or not defaul
 | 1 | No default 
 | - 1| Default|
 
-We can use Machine learning to estimate default probability, $f(x)$. To decide whether an individual defaults, we select a threshold, $h$. 
+**We can use Machine learning to estimate non-default probability, $f(x)$.** To decide whether an individual defaults, we select a threshold, $h$. 
 If $f(x)>h$, we reject the loan, and if $\hat{p}(x)<h$, we approve the loan. If no other specified, we usually set $h=0.5$. 
 However, doins so is threshold dependent. Differnt $h$ produces different confusion matrix and thus the subsequent measures, accuarcy, F1-Score, etc. Another threshold independent measure is AUC. 
 
@@ -48,9 +48,10 @@ They derive that the optimal decision (i.e., $a$) is determined by whether the t
 $c(x) = \frac{u_{-1,-1}(x) - u_{1,-1}(x)}{u_{1,1}(x) - u_{-1,1}(x) + u_{-1,-1}(x) - u_{1,-1}(x)}=\frac{0 − (−LGD·A)}{r·A − 0 + 0 − (−LGD·A)} = \frac{LGD}{r+LGD},$
 where $u_{a,y}(x)$ is the lender's utility from action $a$ when outcome is $y$. The key insight: only the **sign** of $p^*(x) - c(x)$ matters for optimal decisions, not the precise probability — so estimation should target that crossing point, not the conditional probability itself.
 
-#### Decision rule ❓❓❓
-- $f(x) > ❓c(x)$, we reject the loan, i.e., $a= -1$ <br>
-- $f(x) < ❓c(x)$, we approve the loan, i.e., $a=1$. 
+#### Decision rule 
+
+- **$f(x) > c(x)$, we approve the loan, i.e., $a=1$** <br>
+- **$f(x) < c(x)$, we reject the loan, i.e., $a=-1$.** 
 
 
 
